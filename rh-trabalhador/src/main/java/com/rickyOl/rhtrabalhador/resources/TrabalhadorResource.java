@@ -37,6 +37,12 @@ public class TrabalhadorResource {
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Trabalhador> buscarPorId(@PathVariable Long id){
 	
+		/*
+		 * Teste para Hystrix
+		 * try { Thread.sleep(3000L); } catch (Exception e) { // TODO: handle exception
+		 * }
+		 */
+		
 		logger.info("port="+env.getProperty("local.server.port"));
 		
 		Trabalhador trab =  repositorio.findById(id).get();
