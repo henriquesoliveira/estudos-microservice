@@ -16,6 +16,10 @@ public class Papel implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nomePapel;
+	
+	public Papel() {
+		
+	}
 
 	public Papel(Long id, String nomePapel) {
 		super();

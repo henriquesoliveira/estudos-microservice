@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,11 +20,15 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	@Column(unique = true)
 	private String email;
+	
 	private String senha;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -48,7 +52,15 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.senha = senha;
 	}
-
+	
+	public Usuario(Long id, String nome, String email, String senha, Set<Papel> papeis) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.papeis = papeis;
+	}
 
 
 	public Long getId() {
