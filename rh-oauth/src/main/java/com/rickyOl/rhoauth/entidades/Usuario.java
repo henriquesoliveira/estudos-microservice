@@ -3,6 +3,7 @@ package com.rickyOl.rhoauth.entidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -84,17 +85,10 @@ public class Usuario implements Serializable, UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return papeis
-				.stream()
+		return papeis.stream()
 				.map(x -> new SimpleGrantedAuthority(x.getNomePapel()))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList()); 
 	}
-
-
-	@Override
-	public String getPassword() {
-		return this.senha;
-	} 
 
 
 	@Override
@@ -124,6 +118,12 @@ public class Usuario implements Serializable, UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+
+	@Override
+	public String getPassword() {
+		return this.senha;
 	}
 	
 	
